@@ -1,7 +1,7 @@
 // Catálogo de agentes. El comportamiento vive en prompts/system-prompt.md;
 // aquí solo se mapea cada agente a su sección y al tipo de artefacto que produce.
 
-export type ArtifactType = 'requirement' | 'risk' | 'testcase' | 'execution' | 'automation' | 'report' | 'plan'
+export type ArtifactType = 'requirement' | 'risk' | 'testcase' | 'run' | 'execution' | 'automation' | 'report' | 'plan'
 
 export interface AgentDef {
   id: string

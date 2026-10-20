@@ -4,6 +4,7 @@
   "type": "object",
   "required": [
     "executionId",
+    "runId",
     "testCaseId",
     "environment",
     "status",
@@ -66,7 +67,8 @@
             "B",
             "C1",
             "C2",
-            "C3"
+            "C3",
+            "manual"
           ]
         },
         "agent": {
@@ -83,6 +85,40 @@
         "string",
         "null"
       ]
+    },
+    "runId": {
+      "type": "string",
+      "pattern": "^RUN-\\d{8}-\\d{3,}$"
+    },
+    "actualResult": {
+      "type": "string"
+    },
+    "stepResults": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "index",
+          "status"
+        ],
+        "properties": {
+          "index": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "status": {
+            "enum": [
+              "PASSED",
+              "FAILED",
+              "BLOCKED",
+              "NOT_RUN"
+            ]
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
     }
   },
   "additionalProperties": true

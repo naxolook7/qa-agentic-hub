@@ -1,17 +1,19 @@
 import { Fragment, useState } from 'react'
 import type { ArtifactType } from '../agents/agents'
 import type { StoredArtifact } from '../store/model'
+import { TestCaseCard } from './TestCaseCard'
 
 const TYPES: { type: ArtifactType; label: string }[] = [
   { type: 'requirement', label: 'Requerimientos' },
   { type: 'risk', label: 'Riesgos' },
   { type: 'testcase', label: 'Casos de prueba' },
+  { type: 'run', label: 'Ciclos' },
   { type: 'execution', label: 'Ejecuciones' },
   { type: 'automation', label: 'Automatización' },
 ]
 
 const titleOf = (a: StoredArtifact) =>
-  String(a.data.title ?? a.data.description ?? a.data.path ?? a.data.status ?? '')
+  String(a.data.title ?? a.data.name ?? a.data.description ?? a.data.path ?? (a.data.testCaseId ? `${a.data.testCaseId} · ${a.data.status}` : ''))
 
 interface Props {
   artifacts: StoredArtifact[]
@@ -57,10 +59,21 @@ export function ArtifactsPanel({ artifacts, onSave }: Props) {
                       {a.approvedBy ? '✔ aprobado' : 'aprobar'}
                     </button>
                   </td>
-                  <td><button className="link" onClick={() => setOpen(open === a.id ? null : a.id)}>{open === a.id ? 'ocultar' : 'ver JSON'}</button></td>
+                  <td><button className="link" onClick={() => setOpen(open === a.id ? null : a.id)}>{open === a.id ? 'ocultar' : a.type === 'testcase' ? 'ver detalle' : 'ver JSON'}</button></td>
                 </tr>
                 {open === a.id && (
-                  <tr><td colSpan={6}><pre className="prompt">{JSON.stringify(a.data, null, 2)}</pre></td></tr>
+                  <tr>
+                    <td colSpan={6}>
+                      {a.type === 'testcase' ? (
+                        <>
+                          <TestCaseCard tc={a.data} />
+                          <details><summary>Ver JSON</summary><pre className="prompt">{JSON.stringify(a.data, null, 2)}</pre></details>
+                        </>
+                      ) : (
+                        <pre className="prompt">{JSON.stringify(a.data, null, 2)}</pre>
+                      )}
+                    </td>
+                  </tr>
                 )}
               </Fragment>
             ))}

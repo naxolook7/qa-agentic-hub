@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TestRun",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "requirementId",
+    "environment",
+    "testCaseIds",
+    "status",
+    "createdAt"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^RUN-\\d{8}-\\d{3,}$"
+    },
+    "name": {
+      "type": "string"
+    },
+    "requirementId": {
+      "type": "string",
+      "pattern": "^REQ-\\d{3,}$"
+    },
+    "environment": {
+      "type": "string"
+    },
+    "build": {
+      "type": "string"
+    },
+    "executor": {
+      "type": "string"
+    },
+    "testCaseIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^TC-\\d{3,}-\\d{3,}$"
+      }
+    },
+    "status": {
+      "enum": [
+        "OPEN",
+        "CLOSED"
+      ]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "closedAt": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "mode",
+        "agent",
+        "date"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "A",
+            "B",
+            "C1",
+            "C2",
+            "C3",
+            "manual"
+          ]
+        },
+        "agent": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "approvedBy": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

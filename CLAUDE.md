@@ -18,6 +18,7 @@ los agentes corren en un Proyecto de Claude (Modo A), en Claude Code (Modo B) o 
 src/agents/    catálogo de agentes + composer de prompts
 src/bridge/    extracción/validación de respuestas (Zod)
 src/store/     modelo de datos e IndexedDB (separado por Hub)
+src/execution/ ciclos de prueba, resultados, veredicto GO/CAUTION/NO-GO (sin IA)
 src/ui/        paneles React
 data/          artefactos JSON para Modo B (un archivo por artefacto)
 templates/     estructuras base de automatización
@@ -26,7 +27,7 @@ templates/     estructuras base de automatización
 
 ## Reglas de trabajo
 1. Antes de codificar, indica qué issue/checkbox del roadmap estás resolviendo y su DoD.
-2. Toda lógica nueva en `src/agents`, `src/bridge` o `src/store` lleva prueba en Vitest.
+2. Toda lógica nueva en `src/agents`, `src/bridge`, `src/store` o `src/execution` lleva prueba en Vitest.
 3. Antes de terminar: `npm test && npm run build && npm run lint` sin errores.
 4. Nunca agregues datos, nombres ni dominios de ninguna empresa. Este Hub es personal.
 5. Nunca commitees secretos (API keys, PATs). Las keys de proveedores gratuitos se guardan solo en el navegador del usuario.

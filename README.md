@@ -3,7 +3,7 @@
 Gestiona en un solo lugar **requerimiento → riesgos → casos → ejecución → automatización**, con agentes de IA
 **sin costo de API**: los prompts se ejecutan en tu Proyecto de Claude (Modo A) o con Claude Code (Modo B).
 
-> Estado: **Fase 1 (MVP Modo A)**. Ver `roadmap.md`.
+> Estado: **Fase 1 completa + ejecuciones (Fase 4)**. Ver `roadmap.md`.
 
 ## Qué incluye este scaffold
 
@@ -23,7 +23,7 @@ Gestiona en un solo lugar **requerimiento → riesgos → casos → ejecución �
 
 ```bash
 npm install
-npm test        # 14 pruebas del composer, parser y modelo
+npm test        # pruebas del composer, parser, modelo y ejecuciones
 npm run dev     # http://localhost:5173
 ```
 
@@ -53,7 +53,18 @@ de tu navegador), pero lo que commitees en `data/` **sí sería público**. Opci
 Flujo: **Puente → elige agente → pega la HU → Copiar prompt → pégalo en el Proyecto → copia la respuesta →
 Pegar respuesta → Validar y guardar**. Si hay `clarifications`, respóndelas en el Hub y copia el prompt de seguimiento.
 
-## 4. Modo B con Claude Code
+## 4. Ejecutar pruebas (estilo TestRail)
+
+1. Pestaña **Ejecuciones → + Nuevo ciclo**: elige el requerimiento, ambiente, build y casos → **Crear ciclo**.
+2. **▶ Ejecutar siguiente pendiente**: marca cada paso (✓ ✗ ⛔), elige el estado y completa resultado obtenido y evidencia → **Guardar resultado**.
+3. Si falló: **Copiar borrador de defecto** y pégalo en Jira/Notion.
+4. Para un re-test, abre el caso desde la tabla del ciclo y registra una nueva ejecución (el historial se conserva).
+5. **Copiar reporte** entrega el resumen con la recomendación GO / CAUTION / NO-GO:
+   - **NO-GO**: algún P1/P2 fallido, o algún P1 sin ejecutar o bloqueado.
+   - **CAUTION**: fallas P3/P4, bloqueos, P1/P2 omitidos o casos pendientes.
+   - **GO**: todo ejecutado sin fallas ni bloqueos.
+
+## 5. Modo B con Claude Code
 
 ```bash
 claude                    # login con tu Claude Pro
@@ -63,7 +74,7 @@ claude                    # login con tu Claude Pro
 /qa-automate TC-001-003 playwright
 ```
 
-## 5. Para crear el Hub Empresa (más adelante)
+## 6. Para crear el Hub Empresa (más adelante)
 
 Copia este repo **una sola vez** a la org de la empresa, sin `data/` y sin código de Modo C, y ajusta `profile.yaml`
 (`hub.name: Empresa`, contexto, marcos regulatorios, ambientes, repos reales y `ENABLED_MODES: "A, B"`).

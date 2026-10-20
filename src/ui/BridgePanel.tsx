@@ -83,12 +83,15 @@ export function BridgePanel({ artifacts, onSave }: Props) {
     })
   }
 
-  const followUp = () => {
+  const followUp = (closeWithPending = false) => {
     if (outcome?.kind !== 'saved') return
     const qa = outcome.data.clarifications
       .map((c, i) => ({ question: c.question, answer: (answers[i] ?? '').trim() }))
       .filter((a) => a.answer)
-    void copy(composeFollowUp(agent.id, qa, outcome.data.next), 'Prompt de seguimiento')
+    void copy(
+      composeFollowUp(agent.id, qa, outcome.data.next, closeWithPending),
+      closeWithPending ? 'Prompt de cierre' : 'Prompt de seguimiento',
+    )
   }
 
   return (
@@ -195,9 +198,16 @@ export function BridgePanel({ artifacts, onSave }: Props) {
             </>
           )}
           {(outcome.data.clarifications.length > 0 || outcome.data.next) && (
-            <button onClick={followUp}>
-              {outcome.data.next ? 'Copiar prompt de continuación' : 'Copiar prompt de seguimiento'}
-            </button>
+            <div className="row">
+              <button onClick={() => followUp()}>
+                {outcome.data.next ? 'Copiar prompt de continuación' : 'Copiar prompt de seguimiento'}
+              </button>
+              {outcome.data.clarifications.length > 0 && (
+                <button onClick={() => followUp(true)} title="Usa tus respuestas y deja el resto como pendiente">
+                  Cerrar con dudas pendientes
+                </button>
+              )}
+            </div>
           )}
         </div>
       )}

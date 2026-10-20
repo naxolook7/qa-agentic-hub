@@ -52,3 +52,54 @@ table.kv th { width: 220px; color: var(--muted); font-weight: 500; }
 code { background: var(--code); padding: 1px 4px; border-radius: 4px; font-size: .85em; }
 footer { margin-top: 16px; text-align: center; }
 @media (max-width: 640px) { table { display: block; overflow-x: auto; } }
+
+/* --- Ficha de caso --- */
+.card { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin: 8px 0; background: var(--surface); }
+.card-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.card-head h4 { margin: 0; font-size: 1rem; }
+.card h5 { margin: 12px 0 4px; font-size: .8rem; text-transform: uppercase; letter-spacing: .03em; color: var(--muted); }
+.card ul { margin: 0; padding-left: 20px; }
+.card p { margin: 4px 0; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; margin: 6px 0; }
+.chip { font-size: .72rem; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--border); background: var(--code); white-space: nowrap; }
+.chip.ghost { background: none; }
+.chip.prio-P1 { background: var(--bad); border-color: var(--bad-b); }
+.chip.prio-P2 { background: var(--warn); border-color: var(--warn-b); }
+.chip.auto-CANDIDATE { background: var(--good); border-color: var(--good-b); }
+.data { background: var(--code); padding: 8px; border-radius: 6px; font-size: .8rem; margin: 0; }
+.steps-table td:first-child { width: 32px; color: var(--muted); }
+.nowrap { white-space: nowrap; }
+
+/* --- Ejecuciones --- */
+.row.between { justify-content: space-between; align-items: center; }
+.form-box { border: 1px dashed var(--border); border-radius: 8px; padding: 12px; margin: 12px 0; }
+.form-box h4 { margin-top: 0; }
+.form-box label { margin-bottom: 8px; }
+.grow { flex: 1; min-width: 220px; }
+.req { color: var(--bad-b); }
+.case-picker { list-style: none; padding: 0; margin: 6px 0; max-height: 260px; overflow: auto; border: 1px solid var(--border); border-radius: 6px; }
+.case-picker li { padding: 4px 8px; border-bottom: 1px solid var(--border); }
+.case-picker li:last-child { border-bottom: none; }
+tr.clickable { cursor: pointer; }
+tr.clickable:hover { background: var(--code); }
+.progress { display: inline-flex; width: 120px; height: 8px; border-radius: 4px; overflow: hidden; background: var(--code); vertical-align: middle; }
+.progress.big { width: 100%; height: 14px; }
+.seg.s-PASSED, .status.s-PASSED, .on.s-PASSED { background: #2f8f5b; color: #fff; }
+.seg.s-FAILED, .status.s-FAILED, .on.s-FAILED { background: #c43d3d; color: #fff; }
+.seg.s-BLOCKED, .status.s-BLOCKED, .on.s-BLOCKED { background: #7a4fb5; color: #fff; }
+.seg.s-SKIPPED, .status.s-SKIPPED, .on.s-SKIPPED { background: #8a94a6; color: #fff; }
+.seg.s-NOT_RUN { background: var(--border); }
+.status { font-size: .75rem; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+.status.s-NOT_RUN { background: var(--code); color: var(--muted); }
+.summary-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin: 12px 0; align-items: start; }
+@media (max-width: 760px) { .summary-grid { grid-template-columns: 1fr; } }
+.verdict { font-size: .75rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
+.verdict-box { padding: 10px 12px; border-radius: 8px; border-left: 4px solid; }
+.verdict-box ul { margin: 6px 0; padding-left: 18px; font-size: .85rem; }
+.v-GO { background: var(--good); border-color: var(--good-b); }
+.v-CAUTION { background: var(--warn); border-color: var(--warn-b); }
+.v-NO-GO { background: var(--bad); border-color: var(--bad-b); }
+.status-picker { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+.status-btn.on { font-weight: 700; }
+.step-btns { display: inline-flex; gap: 4px; }
+button.mini { padding: 2px 8px; font-size: .8rem; }

@@ -70,7 +70,12 @@ export function composePrompt(p: ComposeInput): string {
 }
 
 /** Prompt de seguimiento cuando el usuario responde clarifications o pide continuar (`next`). */
-export function composeFollowUp(agentId: string, answers: { question: string; answer: string }[], next?: string): string {
+export function composeFollowUp(
+  agentId: string,
+  answers: { question: string; answer: string }[],
+  next?: string,
+  closeWithPending = false,
+): string {
   const lines = [`AGENTE: ${agentId}`, 'MODO: A', '']
   if (answers.length) {
     lines.push('RESPUESTAS A CLARIFICATIONS:')
@@ -78,6 +83,15 @@ export function composeFollowUp(agentId: string, answers: { question: string; an
     lines.push('')
   }
   if (next) lines.push(`CONTINÚA con lo pendiente: ${next}`, '')
+  if (closeWithPending) {
+    lines.push(
+      'CIERRE: no hay más información disponible. Cierra la salida con lo que tienes:',
+      '- No generes nuevas clarifications (deja el arreglo vacío).',
+      '- Registra cada duda sin responder en "warnings" con el prefijo "PENDIENTE:".',
+      '- No inventes valores para lo que sigue sin respuesta; usa status "partial" si queda algo abierto.',
+      '',
+    )
+  }
   lines.push('Regenera la salida completa considerando lo anterior. Responde solo con el JSON de §9 dentro de un bloque ```json.')
   return lines.join('\n')
 }

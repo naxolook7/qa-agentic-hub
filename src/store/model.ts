@@ -6,7 +6,7 @@ export interface StoredArtifact {
   type: ArtifactType
   version: number
   data: Record<string, unknown>
-  source: { mode: Mode; agent: string; date: string }
+  source: { mode: Mode | 'manual'; agent: string; date: string }
   approvedBy: string | null
 }
 
@@ -72,7 +72,8 @@ export function relatedTo(artifacts: StoredArtifact[], requirementId: string, ty
     a.id === requirementId ||
     a.id.startsWith(`RSK-${num}-`) ||
     a.id.startsWith(`TC-${num}-`) ||
-    (a.type === 'execution' && String(a.data.testCaseId ?? '').startsWith(`TC-${num}-`))
+    (a.type === 'execution' && String(a.data.testCaseId ?? '').startsWith(`TC-${num}-`)) ||
+    (a.type === 'run' && a.data.requirementId === requirementId)
   return Object.fromEntries(
     types.map((t) => [t, artifacts.filter((a) => a.type === t && belongs(a)).map((a) => a.data)]),
   )

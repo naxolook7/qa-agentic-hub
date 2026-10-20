@@ -166,29 +166,34 @@ Cada artefacto: { id, version, source: { mode: A|B|C1|C2, agent, date }, approve
 **DoD:** ADR con resultado de cada spike y modos habilitados por Hub.
 
 ### Fase 1 — MVP: Requerimiento → Análisis (Modo A)
-- [ ] Scaffold Vite + React + TS y deploy a Pages.
-- [ ] Formulario de requerimiento.
-- [ ] Prompt Composer + botón **Copiar prompt** (incluye `<context>` y variables de `profile.yaml`).
-- [ ] **Pegar respuesta**: extracción tolerante del JSON (con o sin bloque ```json), validación Zod, mensaje claro si no cumple.
-- [ ] Vista de análisis con `clarifications` respondibles (genera un nuevo prompt de seguimiento).
-- [ ] IndexedDB + export/import JSON.
-- [ ] Proyecto de Claude configurado con `system-prompt.md` (guía en el README).
+- [x] Scaffold Vite + React + TS y deploy a Pages.
+- [x] Formulario de requerimiento.
+- [x] Prompt Composer + botón **Copiar prompt** (incluye `<context>` y variables de `profile.yaml`).
+- [x] **Pegar respuesta**: extracción tolerante del JSON (con o sin bloque ```json), validación Zod, mensaje claro si no cumple.
+- [x] Vista de análisis con `clarifications` respondibles (genera un nuevo prompt de seguimiento) + botón **Cerrar con dudas pendientes**.
+- [x] IndexedDB + export/import JSON.
+- [x] Proyecto de Claude configurado con `system-prompt.md` (guía en el README).
 
 **DoD:** un requerimiento recorre Copiar → Claude → Pegar → guardado y trazado, en ambos Hubs.
 
 ### Fase 2 — Riesgos
-- [ ] Agente de riesgos por Modo A.
+- [x] Agente de riesgos por Modo A.
 - [ ] Matriz de calor 5×5 editable por el QA.
 
 ### Fase 3 — Diseño de casos
-- [ ] Agente de diseño por Modo A (en lotes por AC si la respuesta es larga).
-- [ ] Tabla editable + matrices `AC × TC` y `RSK × TC` con alertas de brechas.
+- [x] Agente de diseño por Modo A (en lotes por AC si la respuesta es larga).
+- [x] Ficha legible del caso (precondiciones, datos, pasos, resultado esperado).
+- [ ] Edición del caso desde la ficha + matrices `AC × TC` y `RSK × TC` con alertas de brechas.
 - [ ] Export compatible con la base de casos en Notion (Hub Empresa).
 
 ### Fase 4 — Ejecución y registro (sin IA)
-- [ ] Registro manual por ciclo; ambientes prohibidos bloqueados en la UI.
+- [x] Ciclos de prueba estilo TestRail/TestLink: ambiente, build, ejecutor, selección de casos (todos / P1–P2), abrir/cerrar ciclo.
+- [x] Ejecución caso a caso con resultado por paso, estado sugerido, resultado obtenido, evidencia, ID de defecto e historial (re-test).
+- [x] Ambientes prohibidos no seleccionables en la UI.
+- [x] Borrador de defecto en Markdown (marca el paso que falla) y reporte del ciclo copiable.
 - [ ] Importadores Playwright / Karate / Newman JSON → mapeo por tag `@TC-*`.
-- [ ] Dashboard de ciclo; recomendación GO / CAUTION / NO-GO (por reglas; opcionalmente redactada por IA).
+- [x] Dashboard de ciclo; recomendación GO / CAUTION / NO-GO por reglas.
+- [ ] Adjuntar evidencia como archivo (hoy: enlace).
 
 ### Fase 5 — Repo de datos + Modo B
 - [ ] Sincronización IndexedDB ⇄ `data/` vía GitHub API (PAT fine-grained, solo ese repo).

@@ -47,6 +47,13 @@ describe('composer', () => {
     expect(p).toContain('R: 1000')
     expect(p).toContain('casos del AC3')
   })
+
+  it('el cierre con dudas pendientes pide no generar más clarifications', () => {
+    const p = composeFollowUp('requirements-analyst', [], undefined, true)
+    expect(p).toContain('No generes nuevas clarifications')
+    expect(p).toContain('PENDIENTE:')
+    expect(composeFollowUp('requirements-analyst', [])).not.toContain('CIERRE')
+  })
 })
 
 describe('parser de respuestas', () => {
