@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Execution",
+  "type": "object",
+  "required": [
+    "executionId",
+    "testCaseId",
+    "environment",
+    "status",
+    "executedAt"
+  ],
+  "properties": {
+    "executionId": {
+      "type": "string",
+      "pattern": "^EXE-\\d{8}-\\d{3,}$"
+    },
+    "testCaseId": {
+      "type": "string",
+      "pattern": "^TC-\\d{3,}-\\d{3,}$"
+    },
+    "environment": {
+      "type": "string"
+    },
+    "build": {
+      "type": "string"
+    },
+    "executor": {
+      "type": "string"
+    },
+    "executedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "enum": [
+        "PASSED",
+        "FAILED",
+        "BLOCKED",
+        "SKIPPED",
+        "NOT_RUN"
+      ]
+    },
+    "evidence": {
+      "type": "string"
+    },
+    "comment": {
+      "type": "string"
+    },
+    "bugId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "mode",
+        "agent",
+        "date"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "A",
+            "B",
+            "C1",
+            "C2",
+            "C3"
+          ]
+        },
+        "agent": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "approvedBy": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

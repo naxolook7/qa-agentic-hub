@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Requirement",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "acceptanceCriteria"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^REQ-\\d{3,}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "objective": {
+      "type": "string"
+    },
+    "actors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "acceptanceCriteria": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "text"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^REQ-\\d{3,}-AC\\d+$"
+          },
+          "text": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "STATED",
+              "PROPOSED"
+            ]
+          }
+        }
+      }
+    },
+    "ambiguities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "type": {
+      "enum": [
+        "UI",
+        "API",
+        "batch",
+        "integración",
+        "mixto"
+      ]
+    },
+    "sensitiveData": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "testability": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "mode",
+        "agent",
+        "date"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "A",
+            "B",
+            "C1",
+            "C2",
+            "C3"
+          ]
+        },
+        "agent": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "approvedBy": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

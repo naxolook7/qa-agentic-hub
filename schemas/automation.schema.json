@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Automation",
+  "type": "object",
+  "required": [
+    "id",
+    "framework",
+    "repo",
+    "path",
+    "coversTestCases"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^AUT-TC-\\d{3,}-\\d{3,}$"
+    },
+    "framework": {
+      "enum": [
+        "playwright",
+        "karate",
+        "postman"
+      ]
+    },
+    "repo": {
+      "type": "string"
+    },
+    "branch": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "coversTestCases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "enum": [
+        "PLANNED",
+        "IN_PR",
+        "MERGED",
+        "FLAKY",
+        "DISABLED"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "mode",
+        "agent",
+        "date"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "A",
+            "B",
+            "C1",
+            "C2",
+            "C3"
+          ]
+        },
+        "agent": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "approvedBy": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

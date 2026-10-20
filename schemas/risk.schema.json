@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Risk",
+  "type": "object",
+  "required": [
+    "id",
+    "requirementId",
+    "description",
+    "category",
+    "probability",
+    "impact"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^RSK-\\d{3,}-\\d{2,}$"
+    },
+    "requirementId": {
+      "type": "string",
+      "pattern": "^REQ-\\d{3,}$"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "category": {
+      "type": "string"
+    },
+    "probability": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1,
+      "maximum": 5
+    },
+    "impact": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1,
+      "maximum": 5
+    },
+    "score": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "level": {
+      "enum": [
+        "Crítico",
+        "Alto",
+        "Medio",
+        "Bajo",
+        null
+      ]
+    },
+    "acceptanceCriteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "mitigation": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "mode",
+        "agent",
+        "date"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "A",
+            "B",
+            "C1",
+            "C2",
+            "C3"
+          ]
+        },
+        "agent": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "approvedBy": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

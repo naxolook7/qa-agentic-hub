@@ -1,0 +1,17 @@
+# Perfil de ESTE Hub. Resuelve las variables {{...}} de prompts/system-prompt.md (§10).
+# Hub Personal: Claude Pro + modos gratuitos. No pongas datos de ninguna empresa aquí.
+
+hub:
+  name: Personal
+  dataRepo: ""                 # ej. "tu-usuario/qa-hub-data" (privado). Vacío = solo navegador.
+
+vars:
+  ORG_DESCRIPTION: "Proyecto personal de QA, sin cliente específico"
+  COMPLIANCE_FRAMEWORKS: ""
+  ALLOWED_ENVIRONMENTS: "dev, stage"
+  FORBIDDEN_ENVIRONMENTS: "prod"
+  AUTOMATION_REPOS: "playwright: tu-usuario/pw-demo; karate: tu-usuario/karate-demo; postman: tu-usuario/postman-demo"
+  REPO_CONVENTIONS: "Playwright con capas KATA; Karate con data JSON + mock; Postman v2.1 + Newman"
+  TMS: "ninguno (export JSON/CSV)"
+  MAX_ITEMS: "5"
+  ENABLED_MODES: "A, B, C1, C2, C3"
